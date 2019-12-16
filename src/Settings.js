@@ -3,6 +3,8 @@ import SettingsRadioGroup from './SettingsRadioGroup'
 import TemporaryDrawer from './TemporaryDrawer'
 import Divider from '@material-ui/core/Divider'
 import CheckboxesGroup from './CheckboxesGroup'
+import Snackbar from '@material-ui/core/Snackbar'
+import SnackbarContentWrapper from './SnackbarContentWrapper'
 
 const groupings = [
   { group: 1, hiragana: 'あいうえお', katakana: 'アイウエオ' },
@@ -19,19 +21,52 @@ function Settings(props) {
   }
 
   function handleSubmit() {
-    props.onSubmit(tempSettings)
-    handleDrawer(false)
+    const error = Object.values(tempSettings.studying).filter(v => v).length < 1
+    if (error) {
+      console.log('error')
+      setOpen(true)
+    } else {
+      setOpen(false)
+      props.onSubmit(tempSettings)
+      handleDrawer(false)
+    }
   }
 
   function handleDrawer(value) {
     props.onDrawerChange(value)
   }
 
+  //// Snackbar
+  const [open, setOpen] = useState(false)
+
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+
+    setOpen(false)
+  }
+  ////
+
   return (
     <TemporaryDrawer
       onClose={handleSubmit}
       onChange={handleDrawer}
       status={props.drawer}>
+      <Snackbar
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'left'
+        }}
+        open={open}
+        autoHideDuration={6000}
+        onClose={handleClose}>
+        <SnackbarContentWrapper
+          onClose={handleClose}
+          variant='error'
+          message='At least one study group must be selected'
+        />
+      </Snackbar>
       <SettingsRadioGroup
         name='Kana'
         options={['hiragana', 'katakana']}

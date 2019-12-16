@@ -52,7 +52,10 @@ function CheckboxesGroup(props) {
           />
         ))}
       </FormGroup>
-      <ButtonGroup color='primary' aria-label='outlined secondary button group'>
+      <ButtonGroup
+        color='primary'
+        size='small'
+        aria-label='outlined secondary button group'>
         <Button onClick={() => handleClick(false)}>Select none</Button>
         <Button onClick={() => handleClick(true)}>Select all</Button>
       </ButtonGroup>
