@@ -1,16 +1,18 @@
 import React, { useState } from 'react'
-import Icon from '@material-ui/core/Icon'
-import WarningRoundedIcon from '@material-ui/icons/WarningRounded'
-import ButtonGroup from '@material-ui/core/ButtonGroup'
-import Button from '@material-ui/core/Button'
-import FormLabel from '@material-ui/core/FormLabel'
-import FormControl from '@material-ui/core/FormControl'
-import FormGroup from '@material-ui/core/FormGroup'
-import FormControlLabel from '@material-ui/core/FormControlLabel'
-import FormHelperText from '@material-ui/core/FormHelperText'
-import Checkbox from '@material-ui/core/Checkbox'
-import { makeStyles } from '@material-ui/core/styles'
 import clsx from 'clsx'
+// Material core
+import Button from '@material-ui/core/Button'
+import ButtonGroup from '@material-ui/core/ButtonGroup'
+import Checkbox from '@material-ui/core/Checkbox'
+import FormControl from '@material-ui/core/FormControl'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormHelperText from '@material-ui/core/FormHelperText'
+import FormLabel from '@material-ui/core/FormLabel'
+import Icon from '@material-ui/core/Icon'
+import { makeStyles } from '@material-ui/core/styles'
+// Material icon
+import WarningRoundedIcon from '@material-ui/icons/WarningRounded'
 
 const useStyles = makeStyles(theme => ({
   error: {
@@ -29,7 +31,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-function CheckboxesGroup(props) {
+function CheckboxGroup(props) {
   const classes = useStyles()
   const data = props.data
   const [values, setValues] = useState(props.values)
@@ -76,12 +78,12 @@ function CheckboxesGroup(props) {
           color='primary'
           size='small'
           aria-label='outlined secondary button group'>
-          <Button onClick={() => handleClick(false)}>Select none</Button>
           <Button onClick={() => handleClick(true)}>Select all</Button>
+          <Button onClick={() => handleClick(false)}>Select none</Button>
         </ButtonGroup>
       </FormGroup>
       <FormHelperText>
-        <span id='client-snackbar' className={classes.message}>
+        <span className={classes.message}>
           <Icon className={clsx(classes.icon, classes.iconVariant)}>
             <WarningRoundedIcon fontSize='small' />
           </Icon>
@@ -92,4 +94,4 @@ function CheckboxesGroup(props) {
   )
 }
 
-export default CheckboxesGroup
+export default CheckboxGroup

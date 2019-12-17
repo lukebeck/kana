@@ -1,12 +1,15 @@
 import React, { useState } from 'react'
-import { ThemeProvider } from '@material-ui/core/styles'
+import shuffle from 'array-shuffle'
+// Material core
 import Container from '@material-ui/core/Container'
 import CssBaseline from '@material-ui/core/CssBaseline'
-import shuffle from 'array-shuffle'
-import theme from './theme'
-import data from './data'
-import Settings from './Settings'
+import { ThemeProvider } from '@material-ui/core/styles'
+// App components
 import Card from './Card'
+import data from './data'
+import theme from './theme'
+import Settings from './Settings'
+import CardContents from './CardContents'
 
 const testData = {
   question: 'え',
@@ -16,7 +19,7 @@ const testData = {
   correct: 7
 }
 
-function Theme(props) {
+function ThemeContainer(props) {
   return (
     <React.Fragment>
       <CssBaseline />
@@ -53,15 +56,20 @@ function App() {
   }
 
   return (
-    <Theme>
+    <ThemeContainer>
       <Settings
         settings={settings}
         drawer={drawer}
         onDrawerChange={handleDrawer}
         onSubmit={handleSettingsSubmit}
       />
-      <Card data={testData} deck={deck} onClick={() => handleDrawer(true)} />
-    </Theme>
+      <Card
+        correct={testData.correct}
+        answered={testData.answered}
+        onClick={() => handleDrawer(true)}>
+        <CardContents data={testData} />
+      </Card>
+    </ThemeContainer>
   )
 }
 

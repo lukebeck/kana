@@ -1,56 +1,26 @@
 import React from 'react'
-
+// Material core
 import Card from '@material-ui/core/Card'
-import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import CardHeader from '@material-ui/core/CardHeader'
-import Box from '@material-ui/core/Box'
-import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
-import IconButton from '@material-ui/core/IconButton'
-import Typography from '@material-ui/core/Typography'
+import { makeStyles } from '@material-ui/core/styles'
+// Material icons
 import EqualizerRoundedIcon from '@material-ui/icons/EqualizerRounded'
+import IconButton from '@material-ui/core/IconButton'
 import MoreVertIcon from '@material-ui/icons/MoreVert'
+import Typography from '@material-ui/core/Typography'
 
-function RecognitionContents(props) {
-  function handleSubmissionClick(submission) {
-    console.log('Answer submitted: ' + submission)
+const useStyles = makeStyles(theme => ({
+  card: {
+    marginTop: theme.spacing(5),
+    marginLeft: theme.spacing(2),
+    marginRight: theme.spacing(2),
+    height: 485
   }
-  return (
-    <React.Fragment>
-      <CardContent>
-        <Typography align='center' variant='h1' gutterBottom>
-          <Box fontWeight={500} fontSize={150} my={2}>
-            {props.data.question}
-          </Box>
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Grid
-          container
-          spacing={2}
-          direction='row'
-          justify='flex-end'
-          alignItems='center'>
-          {props.data.choices.map((choice, index) => (
-            <Grid key={index} item xs={6} sm={6}>
-              <Button
-                onClick={() => handleSubmissionClick(choice)}
-                fullWidth
-                size='large'
-                variant='outlined'
-                color='primary'>
-                {choice}
-              </Button>
-            </Grid>
-          ))}
-        </Grid>
-      </CardActions>
-    </React.Fragment>
-  )
-}
+}))
 
-function StatsBar(props) {
+function CardFooter(props) {
   return (
     <CardContent>
       <Grid container>
@@ -69,35 +39,26 @@ function StatsBar(props) {
 }
 
 export default function KanaCard(props) {
-  const handleSettingsClick = () => {
+  const classes = useStyles()
+  const correct = props.correct
+  const answered = props.answered
+
+  function handleSettingsClick() {
     props.onClick()
   }
 
-  function onSubmit(submission) {
-    // props.handleSubmission(submission)
-    console.log('passed on:' + submission)
-  }
-  const data = props.data
-
   return (
-    <Box my={4}>
-      <Card>
-        <Box height={485}>
-          <CardHeader
-            onClick={handleSettingsClick}
-            action={
-              <IconButton aria-label='settings'>
-                <MoreVertIcon />
-              </IconButton>
-            }
-          />
-          <RecognitionContents data={data} />
-          <StatsBar
-            correct={props.data.correct}
-            answered={props.data.answered}
-          />
-        </Box>
-      </Card>
-    </Box>
+    <Card className={classes.card}>
+      <CardHeader
+        onClick={handleSettingsClick}
+        action={
+          <IconButton aria-label='settings'>
+            <MoreVertIcon />
+          </IconButton>
+        }
+      />
+      {props.children}
+      <CardFooter correct={correct} answered={answered} />
+    </Card>
   )
 }

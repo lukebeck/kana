@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import SettingsRadioGroup from './SettingsRadioGroup'
-import TemporaryDrawer from './TemporaryDrawer'
-import Divider from '@material-ui/core/Divider'
-import CheckboxesGroup from './CheckboxesGroup'
-import Snackbar from '@material-ui/core/Snackbar'
-import SnackbarContentWrapper from './SnackbarContentWrapper'
+// App components
+import CheckboxGroup from './CheckboxGroup'
+import Drawer from './Drawer'
+import RadioGroup from './RadioGroup'
+import Snackbar from './Snackbar'
 
 const groupings = [
   { group: 1, hiragana: 'あいうえお', katakana: 'アイウエオ' },
@@ -14,6 +13,7 @@ const groupings = [
 
 function Settings(props) {
   const [tempSettings, setTempSettings] = useState(props.settings)
+  const [openSnackbar, setOpenSnackbar] = useState(false)
 
   function handleChange(key, value) {
     const updatedSettings = { ...tempSettings, [key]: value }
@@ -24,9 +24,9 @@ function Settings(props) {
     const error = Object.values(tempSettings.studying).filter(v => v).length < 1
     if (error) {
       console.log('error')
-      setOpen(true)
+      setOpenSnackbar(true)
     } else {
-      setOpen(false)
+      setOpenSnackbar(false)
       props.onSubmit(tempSettings)
       handleDrawer(false)
     }
@@ -36,58 +36,45 @@ function Settings(props) {
     props.onDrawerChange(value)
   }
 
-  //// Snackbar
-  const [open, setOpen] = useState(false)
-
-  const handleClose = (event, reason) => {
+  function handleSnackbarClose(event, reason) {
     if (reason === 'clickaway') {
       return
     }
 
-    setOpen(false)
+    setOpenSnackbar(false)
   }
-  ////
 
   return (
     <React.Fragment>
       <Snackbar
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'left'
-        }}
-        open={open}
-        autoHideDuration={6000}
-        onClose={handleClose}>
-        <SnackbarContentWrapper
-          onClose={handleClose}
-          variant='error'
-          message='At least one study group must be selected'
-        />
-      </Snackbar>
-      <TemporaryDrawer
+        onClose={handleSnackbarClose}
+        open={openSnackbar}
+        variant='error'
+        message='At least one study group must be selected'
+      />
+      <Drawer
         onClose={handleSubmit}
         onChange={handleDrawer}
         status={props.drawer}>
-        <SettingsRadioGroup
+        <RadioGroup
           name='Kana'
           options={['hiragana', 'katakana']}
           value={tempSettings.kana}
           onChange={handleChange}
         />
-        <SettingsRadioGroup
+        <RadioGroup
           name='Type'
           options={['recall', 'recognition']}
           value={tempSettings.type}
           onChange={handleChange}
         />
-        <Divider />
-        <CheckboxesGroup
+        <CheckboxGroup
           kana={tempSettings.kana}
           values={tempSettings.studying}
           data={groupings}
           onChange={handleChange}
         />
-      </TemporaryDrawer>
+      </Drawer>
     </React.Fragment>
   )
 }
