@@ -51,8 +51,10 @@ export default function KanaDrawer(props) {
         className={classes.drawer}
         role='presentation'
         onKeyDown={toggleDrawer(false)}>
-        {props.children.map(child => (
-          <Grid item>{child}</Grid>
+        {props.children.map((child, index) => (
+          <Grid key={index} item>
+            {child}
+          </Grid>
         ))}
       </Grid>
     </Drawer>

@@ -12,6 +12,7 @@ const groupings = [
 ]
 
 function Settings(props) {
+  const previousSettings = props.settings
   const [tempSettings, setTempSettings] = useState(props.settings)
   const [openSnackbar, setOpenSnackbar] = useState(false)
 
@@ -23,11 +24,15 @@ function Settings(props) {
   function handleSubmit() {
     const error = Object.values(tempSettings.studying).filter(v => v).length < 1
     if (error) {
-      console.log('error')
       setOpenSnackbar(true)
     } else {
+      if (tempSettings === previousSettings) {
+        // Settings unchanged: do nothing
+      } else {
+        // Settings changed: submit new settings
+        props.onSubmit(tempSettings)
+      }
       setOpenSnackbar(false)
-      props.onSubmit(tempSettings)
       handleDrawer(false)
     }
   }

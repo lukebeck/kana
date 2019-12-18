@@ -58,6 +58,36 @@ const data = [
     katakana: 'コ',
     romaji: 'ko',
     group: 2
+  },
+  {
+    hiragana: 'さ',
+    katakana: 'サ',
+    romaji: 'sa',
+    group: 3
+  },
+  {
+    hiragana: 'し',
+    katakana: 'シ',
+    romaji: 'shi',
+    group: 3
+  },
+  {
+    hiragana: 'す',
+    katakana: 'ス',
+    romaji: 'su',
+    group: 3
+  },
+  {
+    hiragana: 'せ',
+    katakana: 'セ',
+    romaji: 'se',
+    group: 3
+  },
+  {
+    hiragana: 'そ',
+    katakana: 'ソ',
+    romaji: 'so',
+    group: 3
   }
 ]
 
