@@ -1,7 +1,8 @@
 {
   "name": "kana",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "homepage": "http://lukebeck.github.io/kana",
+  "author": "Luke Beck",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.7.2",

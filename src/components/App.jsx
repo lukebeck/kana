@@ -62,7 +62,7 @@ function App() {
 
   const toggleAltColour = () => {
     let newPalettePrimaryColour =
-      theme.palette.primary.main === '#ff1744' ? '#d500f9' : '#ff1744'
+      theme.palette.primary.main === '#ff5252' ? '#d500f9' : '#ff5252'
     setTheme({
       theme,
       palette: {
