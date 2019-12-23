@@ -4,6 +4,10 @@ import CheckboxGroup from './CheckboxGroup'
 import Drawer from './Drawer'
 import RadioGroup from './RadioGroup'
 import Snackbar from './Snackbar'
+import Switch from '@material-ui/core/Switch'
+import FormGroup from '@material-ui/core/FormGroup'
+import FormControlLabel from '@material-ui/core/FormControlLabel'
+import FormControl from '@material-ui/core/FormControl'
 
 const groupings = [
   { group: 1, hiragana: 'あいうえお', katakana: 'アイウエオ' },
@@ -19,12 +23,17 @@ const groupings = [
 ]
 
 function Settings(props) {
+  const { toggleAltColour, toggleDarkTheme } = props
+
   const previousSettings = props.settings
   const [tempSettings, setTempSettings] = useState(props.settings)
   const [openSnackbar, setOpenSnackbar] = useState(false)
 
   function handleChange(key, value) {
     const updatedSettings = { ...tempSettings, [key]: value }
+    if (tempSettings.kana !== updatedSettings.kana) {
+      toggleAltColour()
+    }
     setTempSettings(updatedSettings)
   }
 
@@ -68,6 +77,21 @@ function Settings(props) {
         onClose={handleSubmit}
         onChange={handleDrawer}
         status={props.drawer}>
+        <FormControl component='fieldset'>
+          <FormControlLabel
+            value={props.dark}
+            control={
+              <Switch
+                checked={props.dark === 'dark' ? true : false}
+                onClick={toggleDarkTheme}
+                color='primary'
+              />
+            }
+            label='Dark mode'
+            labelPlacement='start'
+          />
+        </FormControl>
+
         <RadioGroup
           name='Kana'
           options={['hiragana', 'katakana']}

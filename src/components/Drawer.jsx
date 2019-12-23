@@ -7,6 +7,11 @@ import { makeStyles } from '@material-ui/core/styles'
 import CloseIcon from '@material-ui/icons/Close'
 import IconButton from '@material-ui/core/IconButton'
 
+// This is what I used to effectively implement dark mode in App.js,
+// so a props.toggleDarkMode with a value of ```() => toggleDarkMode()```
+// that gets destructed into the settings drawer and then a switch that ```onClick={toggleDarkMode}``` should work
+//<button onClick={() => toggleDarkMode()}>dark</button>
+
 const useStyles = makeStyles(theme => ({
   drawer: {
     margin: theme.spacing(4),
