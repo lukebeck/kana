@@ -275,6 +275,156 @@ const data = [
     katakana: 'ン',
     romaji: 'n',
     group: 10
+  },
+  {
+    hiragana: 'が',
+    katakana: 'ガ',
+    romaji: 'ga',
+    group: 11
+  },
+  {
+    hiragana: 'ぎ',
+    katakana: 'ギ',
+    romaji: 'gi',
+    group: 11
+  },
+  {
+    hiragana: 'ぐ',
+    katakana: 'グ',
+    romaji: 'gu',
+    group: 11
+  },
+  {
+    hiragana: 'げ',
+    katakana: 'ゲ',
+    romaji: 'ge',
+    group: 11
+  },
+  {
+    hiragana: 'ご',
+    katakana: 'ゴ',
+    romaji: 'go',
+    group: 11
+  },
+  {
+    hiragana: 'ざ',
+    katakana: 'ザ',
+    romaji: 'za',
+    group: 12
+  },
+  {
+    hiragana: 'じ',
+    katakana: 'ジ',
+    romaji: 'ji',
+    group: 12
+  },
+  {
+    hiragana: 'ず',
+    katakana: 'ズ',
+    romaji: 'zu',
+    group: 12
+  },
+  {
+    hiragana: 'ぜ',
+    katakana: 'ゼ',
+    romaji: 'ze',
+    group: 12
+  },
+  {
+    hiragana: 'ぞ',
+    katakana: 'ゾ',
+    romaji: 'zo',
+    group: 12
+  },
+  {
+    hiragana: 'だ',
+    katakana: 'ダ',
+    romaji: 'da',
+    group: 13
+  },
+  {
+    hiragana: 'ぢ',
+    katakana: 'ヂ',
+    romaji: 'dzi',
+    group: 13
+  },
+  {
+    hiragana: 'づ',
+    katakana: 'ヅ',
+    romaji: 'dzu',
+    group: 13
+  },
+  {
+    hiragana: 'で',
+    katakana: 'デ',
+    romaji: 'de',
+    group: 13
+  },
+  {
+    hiragana: 'ど',
+    katakana: 'ド',
+    romaji: 'do',
+    group: 13
+  },
+  {
+    hiragana: 'ば',
+    katakana: 'バ',
+    romaji: 'ba',
+    group: 14
+  },
+  {
+    hiragana: 'び',
+    katakana: 'ビ',
+    romaji: 'bi',
+    group: 14
+  },
+  {
+    hiragana: 'ぶ',
+    katakana: 'ブ',
+    romaji: 'bu',
+    group: 14
+  },
+  {
+    hiragana: 'べ',
+    katakana: 'ベ',
+    romaji: 'be',
+    group: 14
+  },
+  {
+    hiragana: 'ぼ',
+    katakana: 'ボ',
+    romaji: 'bo',
+    group: 14
+  },
+  {
+    hiragana: 'ぱ',
+    katakana: 'パ',
+    romaji: 'pa',
+    group: 15
+  },
+  {
+    hiragana: 'ぴ',
+    katakana: 'ピ',
+    romaji: 'pi',
+    group: 15
+  },
+  {
+    hiragana: 'ぷ',
+    katakana: 'プ',
+    romaji: 'pu',
+    group: 15
+  },
+  {
+    hiragana: 'ぺ',
+    katakana: 'ペ',
+    romaji: 'pe',
+    group: 15
+  },
+  {
+    hiragana: 'ぽ',
+    katakana: 'ポ',
+    romaji: 'po',
+    group: 15
   }
 ]
 

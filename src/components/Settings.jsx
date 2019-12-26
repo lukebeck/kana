@@ -52,7 +52,12 @@ const groupings = [
   { group: 7, hiragana: 'まみむめも', katakana: 'マミムメモ' },
   { group: 8, hiragana: 'や　ゆ　よ', katakana: 'ヤ　ユ　ヨ' },
   { group: 9, hiragana: 'らりるれろ', katakana: 'ラリルレロ' },
-  { group: 10, hiragana: 'わ　を　ん', katakana: 'ワ　ヲ　ン' }
+  { group: 10, hiragana: 'わ　を　ん', katakana: 'ワ　ヲ　ン' },
+  { group: 11, hiragana: 'がぎぐげご', katakana: 'ガギグゲゴ' },
+  { group: 12, hiragana: 'ざじずぜそ', katakana: 'ザジズゼゾ' },
+  { group: 13, hiragana: 'だぢづでど', katakana: 'ダヂヅデド' },
+  { group: 14, hiragana: 'ばびぶべぼ', katakana: 'バビブベボ' },
+  { group: 15, hiragana: 'ぱぴぷぺぽ', katakana: 'パピプペポ' }
 ]
 
 function Settings(props) {
