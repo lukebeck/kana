@@ -31,7 +31,15 @@ const useStyles = makeStyles(theme => ({
   icon: {
     fontSize: 20
   },
-  characterContainer: { height: 250 }
+  characterContainer: { height: 250 },
+  incorrect: {
+    color: '#FE6B8B',
+    border: '1px solid #FE6B8B'
+  },
+  correct: {
+    color: 'rgb(30,230,130)',
+    border: '1px solid rgb(30,230,130)'
+  }
 }))
 
 const RecallQuiz = props => {
@@ -75,24 +83,30 @@ const RecallQuiz = props => {
             alignItems='center'>
             <Grid item xs={6} sm={6}>
               <Button
-                className={clsx(classes.button, darkMode && classes.Darkbutton)}
+                className={clsx(
+                  classes.button,
+                  darkMode && classes.Darkbutton,
+                  classes.correct
+                )}
                 startIcon={<CheckCircleOutlineIcon />}
                 fullWidth
                 size='large'
                 variant='outlined'
-                color='primary'
                 onClick={() => handleSubmit(true)}>
                 Correct
               </Button>
             </Grid>
             <Grid item xs={6} sm={6}>
               <Button
-                className={clsx(darkMode && classes.button)}
+                className={clsx(
+                  classes.button,
+                  darkMode && classes.Darkbutton,
+                  classes.incorrect
+                )}
                 startIcon={<CancelOutlinedIcon />}
                 fullWidth
                 size='large'
                 variant='outlined'
-                color='primary'
                 onClick={() => handleSubmit(false)}>
                 Incorrect
               </Button>
@@ -100,7 +114,6 @@ const RecallQuiz = props => {
           </Grid>
         </CardActions>
       </CardBase>
-
       <CardBase
         face='front'
         reverse={reverse}

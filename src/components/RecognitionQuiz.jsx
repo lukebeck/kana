@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import clsx from 'clsx'
 // Material Core
 import Button from '@material-ui/core/Button'
+
 import Box from '@material-ui/core/Box'
 import CardActions from '@material-ui/core/CardActions'
 import CardContent from '@material-ui/core/CardContent'
 import Grid from '@material-ui/core/Grid'
+import Icon from '@material-ui/core/Icon'
 import Typography from '@material-ui/core/Typography'
 import { makeStyles } from '@material-ui/core/styles'
 // Material icons
@@ -16,11 +18,16 @@ import CheckCircleOutlineIcon from '@material-ui/icons/CheckCircleOutline'
 import CardBase from './CardBase'
 
 const useStyles = makeStyles(theme => ({
+  innerContainer: {
+    padding: '10px',
+    height: '350px',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
   character: {
     fontWeight: 500,
-    fontSize: 150,
-    marginTop: theme.spacing(0),
-    marginBottom: theme.spacing(0)
+    fontSize: 140
   },
   Darkbutton: {
     color: '#fff'
@@ -29,10 +36,21 @@ const useStyles = makeStyles(theme => ({
     fontSize: 20
   },
   cardActions: { height: 100 },
+  characterContainer: {
+    paddingTop: 0
+  },
   icon: {
     fontSize: 20
   },
-  characterContainer: { height: 250 }
+  iconVariant: {
+    marginLeft: theme.spacing(1)
+  },
+  message: {
+    display: 'flex',
+    justifyContent: ' center',
+    alignItems: 'center',
+    fontSize: 14
+  }
 }))
 
 const RecognitionQuiz = props => {
@@ -63,44 +81,57 @@ const RecognitionQuiz = props => {
         reverse={reverse}
         onHeaderClick={onHeaderClick}
         stats={stats}>
-        <CardContent className={classes.characterContainer}>
-          <Typography className={classes.character} align='center' variant='h1'>
-            {quiz.question}
-          </Typography>
-          <Typography align='center' color='primary' variant='h3'>
-            {quiz.answer}
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.cardActions}>
-          <Grid
-            container
-            spacing={1}
-            direction='row'
-            justify='flex-end'
-            alignItems='center'>
-            <Grid align='center' item xs={12} s={12}>
-              <Typography variant='h4'>　</Typography>
+        <div className={classes.innerContainer}>
+          <CardContent className={classes.characterContainer}>
+            <Typography
+              className={classes.character}
+              align='center'
+              variant='h1'>
+              {quiz.question}
+            </Typography>
+            <Typography align='center' color='primary' variant='h3'>
+              {quiz.answer}
+            </Typography>
+          </CardContent>
+          <CardActions className={classes.cardActions}>
+            <Grid
+              container
+              spacing={1}
+              direction='row'
+              justify='flex-end'
+              alignItems='center'>
+              <Grid align='center' item xs={12} s={12}>
+                <span className={classes.message}>
+                  <Typography variant='h5'>You answered: {response}</Typography>
+                  <Icon className={clsx(classes.icon, classes.iconVariant)}>
+                    {quiz.answer === response ? (
+                      <CheckCircleOutlineIcon
+                        style={{ color: 'rgb(30,230,130)' }}
+                        fontSize='small'
+                      />
+                    ) : (
+                      <CancelOutlinedIcon
+                        style={{ color: 'rgb(250,30,80)' }}
+                        fontSize='small'
+                      />
+                    )}
+                  </Icon>
+                </span>
+              </Grid>
+              <Grid item xs={12} sm={12}>
+                <Button
+                  fullWidth
+                  size='large'
+                  variant='outlined'
+                  className={clsx(darkMode && classes.button)}
+                  color='primary'
+                  onClick={() => handleSubmit(response)}>
+                  {quiz.answer === response ? 'Continue' : 'Try again'}
+                </Button>
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={12}>
-              <Button
-                startIcon={
-                  quiz.answer === response ? (
-                    <CheckCircleOutlineIcon />
-                  ) : (
-                    <CancelOutlinedIcon />
-                  )
-                }
-                fullWidth
-                size='large'
-                variant='outlined'
-                className={clsx(darkMode && classes.button)}
-                color='primary'
-                onClick={() => handleSubmit(response)}>
-                {quiz.answer === response ? 'Continue' : 'Try again'}
-              </Button>
-            </Grid>
-          </Grid>
-        </CardActions>
+          </CardActions>
+        </div>
       </CardBase>
 
       <CardBase
@@ -108,37 +139,42 @@ const RecognitionQuiz = props => {
         reverse={reverse}
         onHeaderClick={onHeaderClick}
         stats={stats}>
-        <CardContent className={classes.characterContainer}>
-          <Typography className={classes.character} align='center' variant='h1'>
-            {quiz.question}
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.cardActions}>
-          <Grid
-            container
-            spacing={1}
-            direction='row'
-            justify='flex-end'
-            alignItems='center'>
-            {/* Card face internals go here */}
-            {quiz.choices.map((choice, index) => (
-              <Grid key={index} item xs={6} sm={6}>
-                <Button
-                  className={clsx(
-                    classes.button,
-                    darkMode && classes.Darkbutton
-                  )}
-                  onClick={() => handleResponse(choice)}
-                  fullWidth
-                  size='large'
-                  variant='outlined'
-                  color='primary'>
-                  {choice}
-                </Button>
-              </Grid>
-            ))}
-          </Grid>
-        </CardActions>
+        <div className={classes.innerContainer}>
+          <CardContent className={classes.characterContainer}>
+            <Typography
+              className={classes.character}
+              align='center'
+              variant='h1'>
+              {quiz.question}
+            </Typography>
+          </CardContent>
+          <CardActions className={classes.cardActions}>
+            <Grid
+              container
+              spacing={1}
+              direction='row'
+              justify='flex-end'
+              alignItems='center'>
+              {/* Card face internals go here */}
+              {quiz.choices.map((choice, index) => (
+                <Grid key={index} item xs={6} sm={6}>
+                  <Button
+                    className={clsx(
+                      classes.button,
+                      darkMode && classes.Darkbutton
+                    )}
+                    onClick={() => handleResponse(choice)}
+                    fullWidth
+                    size='large'
+                    variant='outlined'
+                    color='primary'>
+                    {choice}
+                  </Button>
+                </Grid>
+              ))}
+            </Grid>
+          </CardActions>
+        </div>
       </CardBase>
     </Box>
   )

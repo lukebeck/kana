@@ -59,6 +59,9 @@ function App() {
       type: 'dark',
       primary: {
         main: settings.kana === 'hiragana' ? red : purple
+      },
+      error: {
+        main: '#ff5252'
       }
     }
   })
