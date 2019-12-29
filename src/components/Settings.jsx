@@ -106,6 +106,11 @@ function Settings(props) {
     props.onDrawerChange(value)
   }
 
+  function handleDarkTheme() {
+    setTempSettings({ ...tempSettings, darkMode: !tempSettings.darkMode })
+    toggleDarkTheme()
+  }
+
   function handleSnackbarClose(event, reason) {
     if (reason === 'clickaway') {
       return
@@ -152,11 +157,11 @@ function Settings(props) {
         <Button onClick={() => setDialog(true)}>View deck</Button>
         <FormControl component='fieldset'>
           <FormControlLabel
-            value={props.dark}
+            value={previousSettings.darkMode}
             control={
               <Switch
-                checked={props.dark === 'dark' ? true : false}
-                onClick={toggleDarkTheme}
+                checked={previousSettings.darkMode}
+                onClick={handleDarkTheme}
                 color='primary'
               />
             }

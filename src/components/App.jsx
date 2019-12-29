@@ -11,6 +11,7 @@ import dealer from '../utils/dealer'
 import data from '../data'
 
 const DEFAULT_SETTINGS = {
+  darkMode: false,
   type: 'recognition',
   kana: 'hiragana',
   studying: {
@@ -56,15 +57,17 @@ function App() {
 
   const [theme, setTheme] = useState({
     palette: {
-      type: 'dark',
+      type: settings.darkMode ? 'dark' : 'light',
       primary: {
         main: settings.kana === 'hiragana' ? red : purple
       }
     }
   })
 
-  const toggleDarkTheme = () => {
-    let newPaletteType = theme.palette.type === 'light' ? 'dark' : 'light'
+  const toggleDarkTheme = event => {
+    let darkMode = !settings.darkMode
+    let newPaletteType = darkMode ? 'dark' : 'light'
+    setSettings({ ...settings, darkMode: darkMode })
     setTheme({
       theme,
       palette: { ...theme.palette, type: newPaletteType }
@@ -72,7 +75,6 @@ function App() {
   }
 
   const toggleAltColour = kana => {
-    console.log(kana)
     let newPalettePrimaryColour = kana === 'hiragana' ? red : purple
     setTheme({
       theme,
@@ -143,7 +145,6 @@ function App() {
       <Container maxWidth='xs'>
         <Settings
           deck={deck}
-          dark={theme.palette.type}
           settings={settings}
           drawer={drawer}
           onDrawerChange={handleDrawer}
